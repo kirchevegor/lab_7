@@ -7,8 +7,10 @@
 #include <algorithm> 
 #include <fstream> 
 #include <regex> // Подключаем библиотеку для работы с регулярными выражениями
-#include <set> 
-#include <windows.h> // нужно добавить в блок include сверху/ Подключаем библиотеку для работы с множествами (для хранения дубликатов)
+#include <set>
+#ifdef _WIN32 
+#include <windows.h>
+#endif // нужно добавить в блок include сверху/ Подключаем библиотеку для работы с множествами (для хранения дубликатов)
 
 namespace fs = std::filesystem; // Создаем псевдоним для пространства имен файловой системы
 
@@ -141,9 +143,11 @@ void find_duplicates(const std::vector<fs::path>& directories, const std::vector
 
 }
 
-int main() { 
+int main() {
+    #ifdef _WIN32 
     SetConsoleOutputCP(CP_UTF8);
-    SetConsoleCP(CP_UTF8);// Начало функции main, точки входа в программу
+    SetConsoleCP(CP_UTF8);
+    #endif// Начало функции main, точки входа в программу
     std::vector<fs::path> directories; // Вектор для хранения путей директорий для сканирования
     std::vector<fs::path> exclusions; // Вектор для хранения путей директорий, которые нужно исключить из сканирования
     size_t blockSize = 4096; // Значение по умолчанию для размера блока чтения файла
