@@ -10,7 +10,7 @@
 #include <set>
 #ifdef _WIN32 
 #include <windows.h>
-#endif // нужно добавить в блок include сверху/ Подключаем библиотеку для работы с множествами (для хранения дубликатов)
+#endif
 
 namespace fs = std::filesystem; // Создаем псевдоним для пространства имен файловой системы
 
@@ -147,7 +147,8 @@ int main() {
     #ifdef _WIN32 
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
-    #endif// Начало функции main, точки входа в программу
+    #endif 
+
     std::vector<fs::path> directories; // Вектор для хранения путей директорий для сканирования
     std::vector<fs::path> exclusions; // Вектор для хранения путей директорий, которые нужно исключить из сканирования
     size_t blockSize = 4096; // Значение по умолчанию для размера блока чтения файла
